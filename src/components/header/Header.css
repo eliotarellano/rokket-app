@@ -1,0 +1,17 @@
+.header {
+    
+}
+
+.header-img {
+  max-width: 4rem;
+}
+
+.header-col-bordered {
+  border-left: 4px solid black;
+}
+
+@media (max-width: 575px) {
+  .header-img {
+    max-width: 3rem;
+  }
+}
