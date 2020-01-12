@@ -10,7 +10,7 @@ import {
     CardTitle,
 } from 'reactstrap';
 
-const PostList = () => {
+const PostList = (props) => {
     return (
         <div className="post-list">
             <Col sm="12" md={{'size': 6, 'offset':3}} lg="6">

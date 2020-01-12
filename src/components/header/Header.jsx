@@ -12,7 +12,7 @@ import logoText from '../../assets/image/rokketlabs.png'
 const Header = () => { 
     return (
         <div className="header">
-            <Navbar color="white" expand="md" className="nav navbar-light">
+            <Navbar color="" expand="md" className="nav">
                 <NavbarBrand href="/">
                     <Row>
                         <Col>

@@ -7,7 +7,7 @@ import {
     Col,
 } from 'reactstrap';
 
-const Home = () => {
+const Home = (props) => {
     return (
         <div className="home">
             <Col sm="12" md="12" lg="12" className="p-4">

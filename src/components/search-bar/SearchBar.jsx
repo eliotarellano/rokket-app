@@ -6,7 +6,7 @@ import {
     Input
 } from 'reactstrap';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
     return (
         <div className="search-bar">
             <Form>
