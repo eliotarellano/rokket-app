@@ -11,7 +11,7 @@ const SearchBar = () => {
         <div className="search-bar">
             <Form>
                 <Col sm="12" md={{'size': 6, 'offset':3}} lg="6">
-                    <Input type="text" placeholder="What're you searching for?" className="input-underlined" />
+                    <Input type="text" placeholder="What are you looking for?" className="input-underlined" />
                 </Col>
             </Form>
         </div>

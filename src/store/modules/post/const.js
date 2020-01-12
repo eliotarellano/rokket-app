@@ -1,0 +1,3 @@
+export const POST_FIND_ALL_START = 'POST_FIND_ALL_START';
+export const POST_FIND_ALL_OK = 'POST_FIND_ALL_OK';
+export const POST_FIND_ALL_NOK = 'POST_FIND_ALL_NOK';

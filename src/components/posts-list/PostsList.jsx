@@ -16,12 +16,15 @@ const PostList = () => {
             <Col sm="12" md={{'size': 6, 'offset':3}} lg="6">
                 <Card>
                     <CardBody>
-                        <CardTitle>Author</CardTitle>
+                        <Col className="row pl-md-3">
+                            <CardImg className="post-user-avatar" src="https://randomuser.me/api/portraits/women/51.jpg" alt="" />
+                            <CardTitle className="ml-3">Eliot Arellano</CardTitle>
+                        </Col>
                     </CardBody>
                     <CardImg src="https://reactstrap.github.io/assets/318x180.svg" alt="" />
                     <CardBody>
-                        <CardLink href="#">Card Link</CardLink>
-                        <CardLink href="#">Another Link</CardLink>
+                        <CardLink href="#">#Card</CardLink>
+                        <CardLink href="#">#Another</CardLink>
                         <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
                     </CardBody>
                     <CardBody>
