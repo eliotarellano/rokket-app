@@ -31,12 +31,12 @@ export const findPostsAsyncActionCreator = () => {
         dispatch(findAllPostsActionCreator());
         getPostsList()
         .catch(error => {
-            dispatch(findAllPostsNokActionCreator());
+            dispatch(findAllPostsNokActionCreator('Error:', error));
         }).then(response => {
-            if (response.message !== 'success') {
-                dispatch(findAllPostsNokActionCreator());
+            if (!response) {
+                dispatch(findAllPostsNokActionCreator('Error: generico'));
             } else {    
-                dispatch(findAllPostsOkActionCreator());
+                dispatch(findAllPostsOkActionCreator(response.data));
             }
         });
     }

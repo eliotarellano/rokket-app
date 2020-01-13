@@ -1,0 +1,15 @@
+.theme-toggler-container {
+    position: fixed;
+    top: 50%;
+    bottom: 50%;
+    right: 0px;
+    z-index: 999;
+}
+  
+.theme-toggler-button {
+    background-color: #6787c2;
+    display: block;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px 10px;
+}

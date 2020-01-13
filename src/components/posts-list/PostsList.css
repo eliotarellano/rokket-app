@@ -1,9 +1,10 @@
-.post-list {
-    
-}
-
 .post-user-avatar {
     max-width: 42px;
     max-height: 42px;
     border-radius: 50% !important;
 }
+
+.post-spin {
+    color: #6787c2;
+    transition: .25s ease;
+  }

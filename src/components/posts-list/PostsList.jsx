@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './PostsList.css';
 import {
     Col,
@@ -9,30 +10,56 @@ import {
     CardLink,
     CardTitle,
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import ScrollAnimation from 'react-animate-on-scroll';
+import { findPostsAsyncActionCreator } from '../../store/modules/post/actions';
 
 const PostList = (props) => {
+    const dispatch = useDispatch();
+    const postsModule = useSelector(store => store.posts);
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(findPostsAsyncActionCreator());
+            setLoading(false);
+        }, 600);
+    },[])
+
     return (
         <div className="post-list">
-            <Col sm="12" md={{'size': 6, 'offset':3}} lg="6">
-                <Card>
-                    <CardBody>
-                        <Col className="row pl-md-3">
-                            <CardImg className="post-user-avatar" src="https://randomuser.me/api/portraits/women/51.jpg" alt="" />
-                            <CardTitle className="ml-3">Eliot Arellano</CardTitle>
+            {loading 
+                ?
+                    <FontAwesomeIcon className="post-spin" icon={faCircleNotch} spin="true" size="2x" /> 
+                :
+                (
+                    <ScrollAnimation className="skills-animation-container" animateIn="fadeIn" duration="2">                    
+                        <Col sm="12" md={{'size': 6, 'offset':3}} lg={{'size': 6, 'offset':3}}>
+                            {postsModule.data.map((post) => (
+                                <Card key={post.id} className="mt-4">
+                                    <CardBody>
+                                        <Col className="row pl-md-3">
+                                            <CardImg className="post-user-avatar" src={post.owner.image} alt="" />
+                                            <CardTitle className="ml-3">{post.owner.firstName + ' ' + post.owner.lastName}</CardTitle>
+                                        </Col>
+                                    </CardBody>
+                                    <CardImg src={post.image} alt="" />
+                                    <CardBody>
+                                        {post.tags.map((tag) => (
+                                            <CardLink href="#">{tag}</CardLink>
+                                        ))}
+                                        <CardText>{post.message}</CardText>
+                                    </CardBody>
+                                    <CardBody>
+                                        <CardText>a few seconds ago</CardText>
+                                    </CardBody>
+                                </Card>
+                            ))}
                         </Col>
-                    </CardBody>
-                    <CardImg src="https://reactstrap.github.io/assets/318x180.svg" alt="" />
-                    <CardBody>
-                        <CardLink href="#">#Card</CardLink>
-                        <CardLink href="#">#Another</CardLink>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                    </CardBody>
-                    <CardBody>
-                        <CardText>a few seconds ago</CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-
+                    </ScrollAnimation>
+                )
+            }
         </div>
     )
 }
