@@ -4,9 +4,13 @@ import Context from '../../context/Context';
 import {
     Col,
     Row,
+    Nav,
     Navbar,
-    NavbarBrand
+    NavLink,
+    NavItem,
+    NavbarText
 } from 'reactstrap';
+import ThemeToggler from '../theme-toggler/ThemeToggler';
 import logoBk from '../../assets/image/rokketlabicon.png';
 import logoWt from '../../assets/image/rokketlabiconw.png';
 import logoTextBk from '../../assets/image/rokketlabs.png';
@@ -19,24 +23,31 @@ const Header = () => {
     return (
         <div className="header">
             <Navbar color="" expand="md" className="nav">
-                <NavbarBrand href="/">
-                    <Row>
-                        <Col>
-                            <img  
-                                alt=""
-                                src={ theme === 'light' ? logoBk : logoWt }
-                                className="header-img mr-md-4"
-                            />
-                        </Col>
-                        <Col className={ theme === 'light' ? 'header-col-bordered' : 'header-col-bordered-dark' }>
-                            <img  
-                                alt=""
-                                src={ theme === 'light' ? logoTextBk : logoTextWt }
-                                className="header-img ml-md-4"
-                            />
-                        </Col>
-                    </Row>
-                </NavbarBrand>
+                <Nav className="mr-auto" navbar>
+                    <NavItem>
+                        <NavLink href="/">
+                            <Row>
+                                <Col>
+                                    <img  
+                                        alt=""
+                                        src={ theme === 'light' ? logoBk : logoWt }
+                                        className="header-img mr-md-4"
+                                    />
+                                </Col>
+                                <Col className={ theme === 'light' ? 'header-col-bordered' : 'header-col-bordered-dark' }>
+                                    <img  
+                                        alt=""
+                                        src={ theme === 'light' ? logoTextBk : logoTextWt }
+                                        className="header-img ml-md-4"
+                                    />
+                                </Col>
+                            </Row>
+                        </NavLink>
+                    </NavItem>
+                </Nav>
+                <NavbarText>
+                    <ThemeToggler />
+                </NavbarText>
             </Navbar>
         </div>
     )

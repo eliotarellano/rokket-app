@@ -4,7 +4,20 @@
     border-radius: 50% !important;
 }
 
-.post-spin {
-    color: #6787c2;
-    transition: .25s ease;
-  }
+.posts-card-light {
+    background-color: white !important;
+    transition: 0.2s !important;
+}
+
+.posts-card-dark {
+    background-color: #282d31 !important;
+    transition: 0.2s !important;
+}
+
+.posts-card-link {
+    color: #5cabb7;
+}
+
+.posts-card-link:hover {
+    color: #72d0de;
+}

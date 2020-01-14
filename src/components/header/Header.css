@@ -6,6 +6,11 @@
   animation: fadein 2s;
 }
 
+.custom-fixed-top {
+  position: fixed !important;
+  z-index: 1030 !important;
+}
+
 .header-img {
   max-width: 4rem;
 }

@@ -4,16 +4,13 @@ import './App.css';
 import Context from './context/Context';
 import theming from './assets/js/theme';
 import Home from './containers/home/Home';
-import ThemeToggler from './components/theme-toggler/ThemeToggler';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import store from './store';
 
 const App = () => {
     const [lsTheme, setLsTheme] = useState(window.localStorage.getItem('theme'));
     const theme = lsTheme;
 
-    const toggleTheme = () => {     
+    const toggleTheme = (event) => { 
         if (theme === 'light') {
             setLsTheme('dark');
         } else if (theme === 'dark') {
@@ -34,7 +31,8 @@ const App = () => {
     },[]);
 
     const contextData = {
-        theme: theme
+        theme: theme,
+        toggle: toggleTheme
     };
 
     theming(theme);
@@ -42,7 +40,6 @@ const App = () => {
     return (
         <div className="app">
             <Context.Provider value={contextData}>
-                <ThemeToggler theme={theme} toggle={toggleTheme} />
                 <Provider store={store}>
                     <Home />
                 </Provider>

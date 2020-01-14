@@ -34,9 +34,6 @@ export const getPostCreatedByUser = (userId) => {
 
 export const getPostByTags = (tagName) => {
     return fetch(`${API}/${TAG_MODULE}/${tagName}/${POST_MODULE}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        method: 'GET'
     }).then(response => response.json());
 }

@@ -1,28 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './Home.css';
 import Header from '../../components/header/Header';
 import SearchBar from '../../components/search-bar/SearchBar';
 import PostsList from '../../components/posts-list/PostsList';
 import {
-    Col,
+    Col
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRedoAlt } from '@fortawesome/free-solid-svg-icons';
 import ScrollAnimation from 'react-animate-on-scroll';
+import { findPostsAsyncActionCreator } from '../../store/modules/post/actions';
 
 const Home = (props) => {
+    const dispatch = useDispatch();
+    const postsModule = useSelector(store => store.posts);
+    const [loading, setLoading] = useState(true);
+    const loadingRd = postsModule.loading;
+
+    useEffect(() => {
+        dispatch(findPostsAsyncActionCreator());
+        setTimeout(() => {
+            if ( loadingRd ) {
+                setLoading(true);
+            } else {
+                setLoading(false);
+            }  
+        }, 1000);
+    },[]);
 
     return (
         <div className="home">
-            <ScrollAnimation className="skills-animation-container" animateIn="fadeIn" duration="2">
-                <Col sm="12" md="12" lg="12" className="p-4">
-                    <Header />
+            {loading ? (
+                <Col sm="12" md="12" lg="12" className="text-center">
+                    <FontAwesomeIcon className="home-loading vh-100" icon={faRedoAlt} spin={true} size="2x" />
                 </Col>
-                <Col sm="12" md="12" lg="12" className="p-4">
-                    <SearchBar />
-                </Col>
-                <Col sm="12" md="12" lg="12" className="p-4">
-                    <PostsList />
-                </Col>
-            </ScrollAnimation>
+            ) : (
+                <ScrollAnimation className="skills-animation-container" animateIn="fadeIn" duration={2}>
+                    <Col sm="12" md="12" lg="12" className="p-2">
+                        <Header />
+                    </Col>
+                    <Col sm="12" md="12" lg="12" className="p-2">
+                        <SearchBar filter={postsModule.filter} />
+                    </Col>
+                    <Col sm="12" md="12" lg="12" className="mb-4">
+                        <PostsList data={postsModule.data} />
+                    </Col>
+                </ScrollAnimation>
+            )}
         </div>
     )
 }
