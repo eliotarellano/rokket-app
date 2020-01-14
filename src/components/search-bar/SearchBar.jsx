@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './SearchBar.css';
 import {
     Col,
-    Row,
     Input,
-    Button,
-    Badge
+    Button
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -14,9 +12,10 @@ import { findPostsAsyncActionCreator, findPostsByNameAsyncActionCreator } from '
 
 const SearchBar = (props) => {
     const dispatch = useDispatch();
-    const postsModule = useSelector(store => store.posts)
+    const postsModule = useSelector(store => store.posts);
     const [tagName, setTagName] = useState('');
     const filter = postsModule.filter;
+    const userFilter = postsModule.userFilter;
 
     const handleOnClick = () => {
         if ( tagName === '' ) {
@@ -45,30 +44,36 @@ const SearchBar = (props) => {
 
     return (
         <div className="search-bar">
-            <Col sm="12" md={{'size': 8, 'offset': 2}} lg={{'size': 6, 'offset': 3}} className="d-flex align-items-center">
-                <Input
-                    type="text"
-                    className="sb-custom-input mr-4" 
-                    placeholder="Search..."
-                    value={tagName}
-                    onChange={(event) => setTagName(event.target.value)}
-                    onKeyPress={handleKeyPress}
-                />
-                <Button 
-                    color="info"
-                    className="sb-custom-button"
-                    onClick={handleOnClick}>
-                    <FontAwesomeIcon icon={faSearch} />
-                </Button>
-            </Col>
-            { filter ? (
-                <Col sm="12" md={{'size': 8, 'offset': 2}} lg={{'size': 6, 'offset': 3}} className="d-flex align-items-center">
-                    <Button 
-                        color="info"
-                        className="sb-detele-btn">
-                        <span>{filter + ' '}&nbsp;&nbsp;<b className="sb-custom-b" onClick={handleOnDelete}>x</b></span>
-                    </Button>
-                </Col>
+            { !userFilter ? (
+                <div>
+                    <Col sm="12" md={{'size': 8, 'offset': 2}} lg={{'size': 6, 'offset': 3}} className="d-flex align-items-center">
+                        <Input
+                            type="text"
+                            className="sb-custom-input mr-4" 
+                            placeholder="Search..."
+                            value={tagName}
+                            onChange={(event) => setTagName(event.target.value)}
+                            onKeyPress={handleKeyPress}
+                        />
+                        <Button 
+                            color="info"
+                            className="sb-custom-button"
+                            onClick={handleOnClick}>
+                            <FontAwesomeIcon icon={faSearch} />
+                        </Button>
+                    </Col>
+                    { filter ? (
+                        <Col sm="12" md={{'size': 8, 'offset': 2}} lg={{'size': 6, 'offset': 3}} className="d-flex align-items-center">
+                            <Button 
+                                color="info"
+                                className="sb-detele-btn">
+                                <span>{filter + ' '}&nbsp;&nbsp;<FontAwesomeIcon icon={faTimes} className="sb-custom-b" onClick={handleOnDelete} /></span>
+                            </Button>
+                        </Col>
+                    ) : (
+                        <div></div>
+                    ) }
+                </div>
             ) : (
                 <div></div>
             ) }

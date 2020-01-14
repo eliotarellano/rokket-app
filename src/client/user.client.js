@@ -14,9 +14,6 @@ export const getUsersList = () => {
 
 export const getUserInformation = (userId) => {
     return fetch(`${API}/${USER_MODULE}/${userId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        method: 'GET'
     }).then(response => response.json());
 }

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './PostsList.css';
 import Context from '../../context/Context';
+import UserCard from'../user-card/UserCard';
 import {
     Col,
     Card,
@@ -11,19 +12,35 @@ import {
     CardLink,
     CardTitle
 } from 'reactstrap';
-import { findPostsByNameAsyncActionCreator } from '../../store/modules/post/actions';
+import { findPostsByNameAsyncActionCreator, findPostsByUserAsyncActionCreator } from '../../store/modules/post/actions';
+import { findUserByIAsyncActionCreator } from '../../store/modules/user/actions';
 
 const PostList = (props) => {
     const dispatch = useDispatch();
+    const postsModule = useSelector(store => store.posts);
+    const userModule = useSelector(store => store.user);
     const themeData = useContext(Context);
+    const userFilter = postsModule.userFilter;
+
+    const handleOnClickUser = (event) => {
+        const userId = event.target.id;
+            dispatch(findPostsByUserAsyncActionCreator(userId));
+            dispatch(findUserByIAsyncActionCreator(userId));
+    };
 
     const handleOnClick = (event) => {
         const tagName = event.target.innerText;
         dispatch(findPostsByNameAsyncActionCreator(tagName));
     };
 
+
     return (
-        <div className="post-list">   
+        <div className="post-list">
+            { userFilter ? (
+                <UserCard data={userModule.data} />
+            ) : (
+                <div></div>
+            )}
             <Col sm="12" md={{'size': 8, 'offset': 2}} lg={{'size': 6, 'offset': 3}}>
                 { props.data.map(( post ) => (
                     <Card 
@@ -36,8 +53,8 @@ const PostList = (props) => {
                     >
                         <CardBody>
                             <Col className="row pl-md-3 align-items-center">
-                                <CardImg className="post-user-avatar" src={ post.owner.image } alt="" />
-                                <CardTitle className="ml-3 align-self-end">{ post.owner.firstName + ' ' + post.owner.lastName }</CardTitle>
+                                <CardImg id={post.owner.id} className="post-user-avatar" src={ post.owner.image } alt="" onClick={handleOnClickUser} />
+                                <CardTitle id={post.owner.id} className="post-user-name ml-3 align-self-end" onClick={handleOnClickUser}>{ post.owner.firstName + ' ' + post.owner.lastName }</CardTitle>
                             </Col>
                         </CardBody>
                         <CardImg src={ post.image } alt="" />

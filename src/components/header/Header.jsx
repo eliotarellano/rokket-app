@@ -8,8 +8,11 @@ import {
     Navbar,
     NavLink,
     NavItem,
-    NavbarText
+    NavbarText,
+    Button
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import ThemeToggler from '../theme-toggler/ThemeToggler';
 import logoBk from '../../assets/image/rokketlabicon.png';
 import logoWt from '../../assets/image/rokketlabiconw.png';
@@ -46,7 +49,22 @@ const Header = () => {
                     </NavItem>
                 </Nav>
                 <NavbarText>
-                    <ThemeToggler />
+                    <Row>
+                        <ThemeToggler />
+                        <Button
+                        color="tranparent"
+                        href="/"
+                        className="theme-toggler-button">
+                            <FontAwesomeIcon 
+                                color={ 
+                                    contextData.theme === 'light' 
+                                    ? 'black' 
+                                    : 'white' 
+                                }
+                                icon={faHome}
+                            />
+                        </Button>
+                    </Row>
                 </NavbarText>
             </Navbar>
         </div>

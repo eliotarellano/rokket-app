@@ -1,0 +1,3 @@
+export const USER_FIND_BY_ID = 'USER_FIND_BY_ID';
+export const USER_FIND_BY_ID_OK = 'USER_FIND_BY_ID_OK';
+export const USER_FIND_BY_ID_NOK = 'USER_FIND_BY_ID_NOK';

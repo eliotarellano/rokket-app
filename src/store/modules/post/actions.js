@@ -1,6 +1,5 @@
 import {
     getPostsList,
-    getPostById,
     getPostCreatedByUser,
     getPostByTags
 } from '../../../client/post.client';
@@ -12,6 +11,9 @@ import {
     POST_FIND_BY_NAME_START,
     POST_FIND_BY_NAME_OK,
     POST_FIND_BY_NAME_NOK,
+    POST_FIND_BY_USER_START,
+    POST_FIND_BY_USER_OK,
+    POST_FIND_BY_USER_NOK
 } from './const';
 
 // FIND ALL POSTS
@@ -76,6 +78,40 @@ export const findPostsByNameAsyncActionCreator = (tagName) => {
                 dispatch(findPostsByNameNokActionCreator('Error: generico'));
             } else {    
                 dispatch(findPostsByNameOkActionCreator(response.data, tagName));
+            }
+        });
+    }
+};
+
+// FIND POST BY USER
+
+const findPostsByUserActionCreator = () => ({
+    type: POST_FIND_BY_USER_START,
+    payload: null
+});
+
+const findPostsByUserOkActionCreator = (data, userName) => ({
+    type: POST_FIND_BY_USER_OK,
+    payload: data,
+    userName: userName
+});
+
+const findPostsByUserNokActionCreator = (errorMessage) => ({
+    type: POST_FIND_BY_USER_NOK,
+    payload: errorMessage
+});
+
+export const findPostsByUserAsyncActionCreator = (userName) => {
+    return (dispatch, getStore) => {
+        dispatch(findPostsByUserActionCreator());
+        getPostCreatedByUser(userName)
+        .catch(error => {
+            dispatch(findPostsByUserNokActionCreator('Error:', error));
+        }).then(response => {
+            if ( !response ) {
+                dispatch(findPostsByUserNokActionCreator('Error: generico'));
+            } else {
+                dispatch(findPostsByUserOkActionCreator(response.data, userName))
             }
         });
     }

@@ -1,7 +1,13 @@
 .post-user-avatar {
     max-width: 42px;
     max-height: 42px;
+    border: 2px #5cabb7 solid;
     border-radius: 50% !important;
+    cursor: pointer;
+}
+
+.post-user-name {
+    cursor: pointer;
 }
 
 .posts-card-light {
@@ -20,4 +26,15 @@
 
 .posts-card-link:hover {
     color: #72d0de;
+}
+
+.user-card-img {
+    border: 2px #5cabb7 solid;
+    border-radius: 50% !important;
+    width: 20% !important;
+    transition: 0.2s !important;
+}
+
+.user-card-b {
+    cursor: pointer;
 }

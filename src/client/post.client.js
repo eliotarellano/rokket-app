@@ -25,10 +25,7 @@ export const getPostById = (postId) => {
 
 export const getPostCreatedByUser = (userId) => {
     return fetch(`${API}/${USER_MODULE}/${userId}/${POST_MODULE}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        method: 'GET'
     }).then(response => response.json());
 }
 
