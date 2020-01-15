@@ -9,6 +9,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { findPostsAsyncActionCreator, findPostsByNameAsyncActionCreator } from '../../store/modules/post/actions';
+import { clearCommentList } from '../../store/modules/comment/actions';
 
 const SearchBar = (props) => {
     // assigning the useDispatch function to a const
@@ -27,6 +28,7 @@ const SearchBar = (props) => {
     const handleOnClick = () => {
         if ( tagName === '' ) {
             dispatch(findPostsAsyncActionCreator());
+            dispatch(clearCommentList());
         } else {
             dispatch(findPostsByNameAsyncActionCreator(tagName));
             setTagName('');
@@ -39,6 +41,7 @@ const SearchBar = (props) => {
         if (event.key === "Enter") {
             if ( tagName === '' ) {
                 dispatch(findPostsAsyncActionCreator());
+                dispatch(clearCommentList());
             } else {
                 dispatch(findPostsByNameAsyncActionCreator(tagName));
                 setTagName('');
@@ -50,6 +53,7 @@ const SearchBar = (props) => {
 
     const handleOnDelete = () => {
         dispatch(findPostsAsyncActionCreator());
+        dispatch(clearCommentList());
         setTagName('');
     };
 

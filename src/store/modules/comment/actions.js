@@ -3,7 +3,8 @@ import { getCommentsByPostId } from '../../../client/comment.client';
 import {
     COMMENT_FIND_BY_POST_ID_START,
     COMMENT_FIND_BY_POST_ID_OK,
-    COMMENT_FIND_BY_POST_ID_NOK
+    COMMENT_FIND_BY_POST_ID_NOK,
+    CLEAR_COMMENT_LIST
 } from './const';
 
 // find comments by post id action creator
@@ -45,3 +46,10 @@ export const findCommentsByPostIdAsyncActionCreator = (postId) => {
         });
     }
 };
+
+// clear comment list
+
+export const clearCommentList = () => ({
+    type: CLEAR_COMMENT_LIST,
+    payload: null
+});

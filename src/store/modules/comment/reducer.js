@@ -1,7 +1,8 @@
 import {
     COMMENT_FIND_BY_POST_ID_START,
     COMMENT_FIND_BY_POST_ID_OK,
-    COMMENT_FIND_BY_POST_ID_NOK
+    COMMENT_FIND_BY_POST_ID_NOK,
+    CLEAR_COMMENT_LIST
 } from './const';
 
 // initializing redux state
@@ -45,6 +46,17 @@ const commentsReducer = ( prevState = initialState, action ) => {
                 success: false,
                 error: true,
                 errorMessage: action.payload
+            }
+
+        // loading definition on redux state
+
+        case CLEAR_COMMENT_LIST:
+            return {
+                ...prevState,
+                loading: false,
+                success: false,
+                error: null,
+                data: []
             }
 
         // return of previous redux state

@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 import { findPostsByNameAsyncActionCreator, findPostsByUserAsyncActionCreator } from '../../store/modules/post/actions';
 import { findUserByIAsyncActionCreator } from '../../store/modules/user/actions';
-import { findCommentsByPostIdAsyncActionCreator } from '../../store/modules/comment/actions';
+import { findCommentsByPostIdAsyncActionCreator, clearCommentList } from '../../store/modules/comment/actions';
 
 const PostList = (props) => {
     // assigning the useDispatch function to a const
@@ -39,6 +39,7 @@ const PostList = (props) => {
         const userId = event.target.id;
         dispatch(findPostsByUserAsyncActionCreator(userId));
         dispatch(findUserByIAsyncActionCreator(userId));
+        dispatch(clearCommentList());
     };
 
     // onClick function that dispatch the findpostsbyname action
@@ -46,6 +47,7 @@ const PostList = (props) => {
     const handleOnClick = (event) => {
         const tagName = event.target.innerText;
         dispatch(findPostsByNameAsyncActionCreator(tagName));
+        dispatch(clearCommentList());
     };
 
     // onClick function that dispatch the findcommentsbypostid action
