@@ -1,7 +1,7 @@
 # Rokket App
 <br />
 <p align="center">
-  <a href="https://github.com/eliotarellano/portfolio-app">
+  <a href="https://github.com/eliotarellano/rokket-app">
     <img src="/src/assets/image/rokketlabs.png" alt="Logo" width="200" height="161">
   </a>
 </p>
