@@ -1,7 +1,8 @@
 import {
     getPostsList,
     getPostCreatedByUser,
-    getPostByTags
+    getPostByTags,
+    getPostById
 } from '../../../client/post.client';
 
 import {
@@ -16,22 +17,28 @@ import {
     POST_FIND_BY_USER_NOK
 } from './const';
 
-// FIND ALL POSTS
+// find all posts action creator
 
 const findAllPostsActionCreator = () => ({
     type: POST_FIND_ALL_START,
     payload: null
 });
 
+// payload data definition on successful connection
+
 const findAllPostsOkActionCreator = (data) => ({
     type: POST_FIND_ALL_OK,
     payload: data
 });
 
+// error message definition when connection isn't successful
+
 const findAllPostsNokActionCreator = (errorMessage) => ({
     type: POST_FIND_ALL_NOK,
     payload: errorMessage
 });
+
+// find all posts asynchronous action creator
 
 export const findPostsAsyncActionCreator = () => {
     return (dispatch, getStore) => {
@@ -49,12 +56,14 @@ export const findPostsAsyncActionCreator = () => {
     }
 };
 
-// FIND POSTS BY NAME
+// find posts by name action creator
 
 const findPostsByNameActionCreator = () => ({
     type: POST_FIND_BY_NAME_START,
     payload: null
 });
+
+// payload data definition on successful connection
 
 const findPostsByNameOkActionCreator = (data, tagName) => ({
     type: POST_FIND_BY_NAME_OK,
@@ -62,10 +71,14 @@ const findPostsByNameOkActionCreator = (data, tagName) => ({
     tagName: tagName
 });
 
+// error message definition when connection isn't successful
+
 const findPostsByNameNokActionCreator = (errorMessage) => ({
     type: POST_FIND_BY_NAME_NOK,
     payload: errorMessage
 });
+
+// find posts by name asynchronous action creator
 
 export const findPostsByNameAsyncActionCreator = (tagName) => {
     return (dispatch, getStore) => {
@@ -83,12 +96,14 @@ export const findPostsByNameAsyncActionCreator = (tagName) => {
     }
 };
 
-// FIND POST BY USER
+// find posts by user action creator
 
 const findPostsByUserActionCreator = () => ({
     type: POST_FIND_BY_USER_START,
     payload: null
 });
+
+// payload data definition on successful connection
 
 const findPostsByUserOkActionCreator = (data, userName) => ({
     type: POST_FIND_BY_USER_OK,
@@ -96,10 +111,14 @@ const findPostsByUserOkActionCreator = (data, userName) => ({
     userName: userName
 });
 
+// error message definition when connection isn't successful
+
 const findPostsByUserNokActionCreator = (errorMessage) => ({
     type: POST_FIND_BY_USER_NOK,
     payload: errorMessage
 });
+
+// find posts by user asynchronous action creator
 
 export const findPostsByUserAsyncActionCreator = (userName) => {
     return (dispatch, getStore) => {
@@ -116,3 +135,4 @@ export const findPostsByUserAsyncActionCreator = (userName) => {
         });
     }
 };
+

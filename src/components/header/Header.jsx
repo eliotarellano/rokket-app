@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './Header.css';
+import './Header.scss';
 import Context from '../../context/Context';
 import {
     Col,
@@ -20,6 +20,8 @@ import logoTextBk from '../../assets/image/rokketlabs.png';
 import logoTextWt from '../../assets/image/rokketlabsw.png';
 
 const Header = () => {
+    // getting global theme
+    
     const contextData = useContext(Context);
     const theme = contextData.theme;
 

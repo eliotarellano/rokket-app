@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import './UserCard.css';
+import './UserCard.scss';
 import Context from '../../context/Context';
 import { 
     Col,
@@ -14,12 +14,21 @@ import { faTimes, faUser, faEnvelope, faPhone } from '@fortawesome/free-solid-sv
 import { findPostsAsyncActionCreator } from '../../store/modules/post/actions';
 
 const UserCard = (props) => {
+    // assigning the useDispatch function to a const
+
     const dispatch = useDispatch();
+
+    // getting global theme
+
     const themeData = useContext(Context);
+
+    // onClick function that dispatch the findposts action
 
     const handleOnDelete = () => {
         dispatch(findPostsAsyncActionCreator());
     };
+
+    // returning component
 
     return (
         <div className="user-card">

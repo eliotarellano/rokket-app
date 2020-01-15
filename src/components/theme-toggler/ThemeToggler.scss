@@ -1,0 +1,10 @@
+/** ThemeToggler styling **/
+
+.theme-toggler-button {
+    font-size: 1.5rem !important;
+  
+    &:focus, &:active, &:hover {
+      box-shadow: unset !important;
+      outline: 0 !important;
+    }
+  }

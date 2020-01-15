@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './Home.css';
+import './Home.scss';
 import Header from '../../components/header/Header';
 import SearchBar from '../../components/search-bar/SearchBar';
 import PostsList from '../../components/posts-list/PostsList';
@@ -13,10 +13,17 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import { findPostsAsyncActionCreator } from '../../store/modules/post/actions';
 
 const Home = (props) => {
+    // assigning the useDispatch function to a const
+
     const dispatch = useDispatch();
+
+    // getting data from store
+
     const postsModule = useSelector(store => store.posts);
     const [loading, setLoading] = useState(true);
     const loadingRd = postsModule.loading;
+
+    // effect hook that sets a time out of one seconds to load the view
 
     useEffect(() => {
         dispatch(findPostsAsyncActionCreator());
@@ -28,6 +35,8 @@ const Home = (props) => {
             }  
         }, 1000);
     },[]);
+
+    // returning component
 
     return (
         <div className="home">

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './PostsList.css';
+import './PostsList.scss';
 import Context from '../../context/Context';
 import UserCard from'../user-card/UserCard';
 import {
     Col,
+    Row,
     Card,
     CardImg,
     CardText,
@@ -14,25 +15,47 @@ import {
 } from 'reactstrap';
 import { findPostsByNameAsyncActionCreator, findPostsByUserAsyncActionCreator } from '../../store/modules/post/actions';
 import { findUserByIAsyncActionCreator } from '../../store/modules/user/actions';
+import { findCommentsByPostIdAsyncActionCreator } from '../../store/modules/comment/actions';
 
 const PostList = (props) => {
+    // assigning the useDispatch function to a const
+
     const dispatch = useDispatch();
+
+    // getting data from store
+
     const postsModule = useSelector(store => store.posts);
     const userModule = useSelector(store => store.user);
-    const themeData = useContext(Context);
+    const commentsModule = useSelector(store => store.comments);
     const userFilter = postsModule.userFilter;
+
+    // getting global theme
+
+    const themeData = useContext(Context);
+
+    // onClick function that dispatch the findpostbyuser and finduserbyid actions
 
     const handleOnClickUser = (event) => {
         const userId = event.target.id;
-            dispatch(findPostsByUserAsyncActionCreator(userId));
-            dispatch(findUserByIAsyncActionCreator(userId));
+        dispatch(findPostsByUserAsyncActionCreator(userId));
+        dispatch(findUserByIAsyncActionCreator(userId));
     };
+
+    // onClick function that dispatch the findpostsbyname action
 
     const handleOnClick = (event) => {
         const tagName = event.target.innerText;
         dispatch(findPostsByNameAsyncActionCreator(tagName));
     };
 
+    // onClick function that dispatch the findcommentsbypostid action
+
+    const handlePostDetail = (event) => {
+        const postId = event.target.id;
+        dispatch(findCommentsByPostIdAsyncActionCreator(postId));
+    };
+
+    // returning component
 
     return (
         <div className="post-list">
@@ -66,6 +89,20 @@ const PostList = (props) => {
                                 <b>{ post.owner.firstName.toLowerCase() + post.owner.lastName.toLowerCase() }</b>
                                 &nbsp;{ ' ' + post.message }
                             </CardText>
+                            <CardText id={post.id} className="post-view-comments" onClick={handlePostDetail}>View all comments</CardText>
+                                {commentsModule.data.filter(comment => comment.post === post.id).map((comment, index) => {
+                                    return (
+                                        <Row key={index} className="post-comment">
+                                            <Col sm="12" md="12" lg="12" className="mb-2">
+                                                <img src={comment.owner.image} alt="" className="post-comment-img mr-2" />
+                                                <b className="mr-2">
+                                                    {comment.owner.firstName.toLowerCase()+comment.owner.lastName.toLowerCase()}
+                                                </b>
+                                                {' ' +comment.message}
+                                            </Col>
+                                        </Row>
+                                    )
+                                })}
                             <CardText>a few seconds ago</CardText>
                         </CardBody>
                     </Card>

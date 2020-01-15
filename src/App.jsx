@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Provider } from 'react-redux';
-import './App.css';
+import './App.scss';
 import Context from './context/Context';
 import theming from './assets/js/theme';
 import Home from './containers/home/Home';
@@ -10,6 +10,8 @@ const App = () => {
     const [lsTheme, setLsTheme] = useState(window.localStorage.getItem('theme'));
     const theme = lsTheme;
 
+    // checks the theme value and toggle it
+
     const toggleTheme = (event) => { 
         if (theme === 'light') {
             setLsTheme('dark');
@@ -17,6 +19,8 @@ const App = () => {
             setLsTheme('light');
         }
     }
+
+    // effect hook that defines the theme simulating the componentDidMount method
 
     useEffect(() => {
         if ( theme ) {
@@ -30,12 +34,18 @@ const App = () => {
         }
     },[]);
 
+    // const that store the theme value and the toggle function to be setted in context
+
     const contextData = {
         theme: theme,
         toggle: toggleTheme
     };
 
+    // defines the theme globally sending the theme value
+
     theming(theme);
+
+    // returning component with context and store providers
 
     return (
         <div className="app">

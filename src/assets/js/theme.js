@@ -1,3 +1,5 @@
+// defining the theme globally and saving the values in the localStorage
+
 const theming = (theme) => {
     const body = document.querySelector('body');
     window.localStorage.setItem('theme', theme);

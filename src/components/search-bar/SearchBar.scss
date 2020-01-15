@@ -1,0 +1,48 @@
+$primary-color: #5cabb7;
+
+/** SearchBar styling **/
+
+.search-bar {
+  transition: .25s ease;
+}
+
+.sb-custom-input {
+  font-style: italic;
+  font-size: 1.5rem !important;
+  color: $primary-color !important;
+  border: 0px !important;
+  background: transparent !important;
+  transition: 0.2s !important;
+
+  &::-webkit-input-placeholder {
+    color: $primary-color !important;
+  }
+
+  &:focus {
+    font-weight: bold;
+    color: $primary-color !important;
+    border: 0px !important;
+    box-shadow: unset !important;
+    background: rgba(153, 153, 153, 0.08) !important;
+    padding-left: 50px;
+  }
+}
+
+.sb-custom-button {
+  width: 42px;
+  height: 42px;
+  transition: 0.2s;
+}
+
+.sb-detele-btn {
+  cursor: default !important;
+
+  :focus, :active, :hover {
+    box-shadow: unset !important;
+    outline: 0 !important;
+  }
+}
+
+.sb-custom-b {
+  cursor: pointer;
+}

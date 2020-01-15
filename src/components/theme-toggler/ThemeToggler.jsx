@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './ThemeToggler.css';
+import './ThemeToggler.scss';
 import {
     Button
 } from 'reactstrap';
@@ -8,7 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
  
 const ThemeToggler = (props) => {
+    // getting global theme
+
     const themeContext = useContext(Context);
+
+    // returning component
+
     return (
         <div className="theme-toggler">
             <Button

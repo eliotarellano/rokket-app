@@ -1,0 +1,60 @@
+$primary-color: #5cabb7;
+$secondary-color: #72d0de;
+
+/** PoostList styling **/
+
+.post-user-avatar {
+  max-width: 42px;
+  max-height: 42px;
+  border: 2px $primary-color solid;
+  border-radius: 50% !important;
+  cursor: pointer;
+}
+  
+.post-user-name {
+  cursor: pointer;
+}
+
+.posts-card-light {
+  background-color: white !important;
+  transition: 0.2s !important;
+}
+
+.posts-card-dark {
+  background-color: #282d31 !important;
+  transition: 0.2s !important;
+}
+
+.posts-card-link {
+  color: $primary-color;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+.post-view-comments {
+  cursor: pointer;
+}
+
+.post-comment {
+  transition: 0.2s !important;
+}
+
+.post-comment-img {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px $primary-color solid;
+  border-radius: 50%;
+}
+
+.user-card-img {
+  border: 2px $primary-color solid;
+  border-radius: 50% !important;
+  width: 20% !important;
+  transition: 0.2s !important;
+}
+
+.user-card-b {
+  cursor: pointer;
+}

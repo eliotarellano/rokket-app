@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './SearchBar.css';
+import './SearchBar.scss';
 import {
     Col,
     Input,
@@ -11,11 +11,18 @@ import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { findPostsAsyncActionCreator, findPostsByNameAsyncActionCreator } from '../../store/modules/post/actions';
 
 const SearchBar = (props) => {
+    // assigning the useDispatch function to a const
+
     const dispatch = useDispatch();
+
+    // getting data from store
+
     const postsModule = useSelector(store => store.posts);
     const [tagName, setTagName] = useState('');
     const filter = postsModule.filter;
     const userFilter = postsModule.userFilter;
+
+    // onClick function that dispatch the findposts or findpostsbyname actions
 
     const handleOnClick = () => {
         if ( tagName === '' ) {
@@ -25,6 +32,8 @@ const SearchBar = (props) => {
             setTagName('');
         }
     };
+
+    // onKeyPress function that dispatch the findposts or findpostsbyname actions
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -37,10 +46,14 @@ const SearchBar = (props) => {
         }
     };
 
+    // onClick function that dispatch the findposts action
+
     const handleOnDelete = () => {
         dispatch(findPostsAsyncActionCreator());
         setTagName('');
     };
+
+    // returning component
 
     return (
         <div className="search-bar">
