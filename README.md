@@ -27,7 +27,6 @@ npm start
 * [redux-thunk](https://www.npmjs.com/package/redux-thunk)
 * [reactstrap](https://reactstrap.github.io/)
 * [react-fontawesome](https://github.com/FortAwesome/react-fontawesome)
-* [typewriter-effect](https://www.npmjs.com/package/typewriter-effect)
 * [react-animate-on-scroll](https://github.com/dbramwell/react-animate-on-scroll)
 
 ### Author
