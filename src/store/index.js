@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import postsReducer from './modules/post/reducer';
 import userReducer from './modules/user/reducer';
 import commentsReducer from './modules/comment/reducer';
@@ -15,6 +14,6 @@ const rootReducer = combineReducers({
 
 // creation of the store and the redux thunk usage for asynchronous functions
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
