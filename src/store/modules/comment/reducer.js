@@ -11,9 +11,6 @@ const initialState = {
     loading: false,
     error: null,
     success: null,
-    filter: '',
-    userFilter: '',
-    postFilter: '',
     errorMessage: ''
 };
 
@@ -36,7 +33,6 @@ const commentsReducer = ( prevState = initialState, action ) => {
                 loading: false,
                 success: true,
                 error: null,
-                postFilter: action.postId,
                 data: action.payload
             }
 

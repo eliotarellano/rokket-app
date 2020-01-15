@@ -19,7 +19,6 @@ const initialState = {
     success: null,
     filter: '',
     userFilter: '',
-    postFilter: '',
     errorMessage: ''
 };
 
@@ -44,7 +43,6 @@ const postsReducer = ( prevState = initialState, action ) => {
                 error: null,
                 filter: '',
                 userFilter: '',
-                postFilter: '',
                 data: action.payload
             }
 
