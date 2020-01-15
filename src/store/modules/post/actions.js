@@ -1,8 +1,7 @@
 import {
     getPostsList,
     getPostCreatedByUser,
-    getPostByTags,
-    getPostById
+    getPostByTags
 } from '../../../client/post.client';
 
 import {
